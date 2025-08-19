@@ -33,6 +33,9 @@ public class Livro {
             System.out.println("Valor invalido");
         }
     }
+    public double valorTotal(){
+        return this.quantidade * this.valor;
+    }
 
     @Override
     public String toString() {
