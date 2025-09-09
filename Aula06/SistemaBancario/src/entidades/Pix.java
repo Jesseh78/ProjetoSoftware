@@ -19,9 +19,9 @@ public class Pix extends Pagamento{
     @Override
     public String toString() {
         return "Pagamento: " +
-                "\nnomeCliente: " + getNomeCliente() +
-                "\ndataPagamento: " + getDataPagamento()  +
-                "\nvalorPagamento: " + getValorPagamento() +
-                "\ncodigoBarras: " + chavePix;
+                "\nnome do cliente: " + getNomeCliente() +
+                "\nData de pagamento: " + getDataPagamento()  +
+                "\nValor do pagamento: " + getValorPagamento() +
+                "\nChave pix: " + chavePix;
     }
 }

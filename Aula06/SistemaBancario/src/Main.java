@@ -20,7 +20,7 @@ public class Main {
         double valorPagamento = sc.nextDouble();
         sc.nextLine();
         int opcoes;
-        do{
+
             System.out.println("Informe método de pagamento");
             System.out.println("1 - boleto");
             System.out.println("2 - PIX");
@@ -30,31 +30,30 @@ public class Main {
             System.out.print("Escolha uma opção: ");
 
             Pagamento pagamento = null;
+            int opcao = sc.nextInt();
+            sc.nextLine();
 
-            opcoes = sc.nextInt();
-            switch(opcoes){
+            switch(opcao){
                 case 1:
                     System.out.println("Digite o código de barras: ");
                     String codigoBarras = sc.nextLine();
                     sc.nextLine();
                     pagamento = new Boleto(nomeCliente, dataPagamento, valorPagamento, codigoBarras);
-                    //pagamento.toString();
+                    System.out.println(pagamento.toString());
                     break;
                 case 2:
                     System.out.println("Digite a chave pix: ");
                     String chavePix = sc.nextLine();
+                    sc.nextLine();
                     pagamento = new Pix(nomeCliente, dataPagamento, valorPagamento, chavePix);
-                    //pagamento.toString();
+                    System.out.println(pagamento.toString());
                     break;
                 case 3:
                     System.out.println("Digite o numero do cartão: ");
                     int nCartao = sc.nextInt();
                     sc.nextLine();
                     pagamento = new Cartao(nomeCliente, dataPagamento, valorPagamento, nCartao);
-                    //pagamento.toString();
-                    break;
-                case 4:
-                    pagamento.toString();
+                    System.out.println(pagamento.toString());
                     break;
                 case 0:
                     System.out.println("Fechando...");
@@ -64,7 +63,7 @@ public class Main {
             }
 
 
-        }while(opcoes != 0);
+
         sc.close();
     }
 }

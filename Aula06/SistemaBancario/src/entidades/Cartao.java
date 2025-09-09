@@ -18,9 +18,9 @@ public class Cartao  extends Pagamento {
     @Override
     public String toString() {
         return "Pagamento: " +
-                "\nnomeCliente: " + getNomeCliente() +
-                "\ndataPagamento: " + getDataPagamento()  +
-                "\nvalorPagamento: " + getValorPagamento() +
-                "\ncodigoBarras: " + nCartao;
+                "\nNome do cliente: " + getNomeCliente() +
+                "\nData de pagamento: " + getDataPagamento()  +
+                "\nValor de pagamento: " + getValorPagamento() +
+                "\nNumero do cartão: " + nCartao;
     }
 }

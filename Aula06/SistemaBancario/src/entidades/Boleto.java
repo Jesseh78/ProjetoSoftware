@@ -19,9 +19,9 @@ public class Boleto extends Pagamento{
     @Override
     public String toString() {
         return "Pagamento: " +
-                "\nnomeCliente: " + getNomeCliente() +
-                "\ndataPagamento: " + getDataPagamento()  +
-                "\nvalorPagamento: " + getValorPagamento() +
-                "\ncodigoBarras: " + codigoBarras;
+                "\nNome do cliente: " + getNomeCliente() +
+                "\nData de pagamento: " + getDataPagamento()  +
+                "\nValor do pagamento: " + getValorPagamento() +
+                "\nCodigo de barras: " + getCodigoBarras();
     }
 }
