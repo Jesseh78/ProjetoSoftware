@@ -34,10 +34,6 @@ public class Main {
                 sc.nextLine();
 
                 // menu de métodos de pagamentos
-                Pagamento pagamento = null;
-                int metodos = sc.nextInt();
-                sc.nextLine();
-
                 System.out.println("Informe método de pagamento");
                 System.out.println("1 - boleto");
                 System.out.println("2 - PIX");
@@ -45,18 +41,20 @@ public class Main {
                 System.out.println("0 - Sair");
                 System.out.print("Escolha uma opção: ");
 
+                int metodos = sc.nextInt();
+                sc.nextLine();
+
+                Pagamento pagamento = null;
                 switch (metodos) {
                     case 1:
                         System.out.println("Digite o código de barras: ");
                         String codigoBarras = sc.nextLine();
-                        sc.nextLine();
                         pagamento = new Boleto(nomeCliente, dataPagamento, valorPagamento, codigoBarras);
                         System.out.println("Boleto cadastrado com sucesso!");
                         break;
                     case 2:
                         System.out.println("Digite a chave pix: ");
                         String chavePix = sc.nextLine();
-                        sc.nextLine();
                         pagamento = new Pix(nomeCliente, dataPagamento, valorPagamento, chavePix);
                         System.out.println("Pix cadastrado com sucesso!");
                         break;
@@ -68,13 +66,16 @@ public class Main {
                         System.out.println("Cartao cadastrado com sucesso!");
                         break;
                     case 0:
-                        System.out.println("Fechando...");
-                        break;
+                        System.out.println("Voltando ao menu principal...");
+                        continue;
                     default:
                         System.out.println("Opção inválida!");
                         continue;
                 }
-                pagamentos.add(pagamento);
+
+                if (pagamento != null) {
+                    pagamentos.add(pagamento);
+                }
             }
             else if (opcao.equals("2")) {
                 System.out.println("Lista de pagamentos: ");
@@ -82,10 +83,13 @@ public class Main {
                     System.out.println(pagamento.toString());
                 }
                 System.out.println("---------------------");
-            }else{
+            }else if (opcao.equals("3")){
                 System.out.println("Finalizando processo...");
+                break;
+            }else{
+                System.out.println("Opção inválida!");
             }
-            sc.close();
         }
+        sc.close();
     }
 }
