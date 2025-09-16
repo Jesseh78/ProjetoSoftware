@@ -67,6 +67,6 @@ public class Catalogo {
                 "\nDiretor: " + diretor +
                 "\nGenero: " + genero +
                 "\nClassificacao: " + classificacao +
-                "----------------";
+                "\n----------------";
     }
 }
