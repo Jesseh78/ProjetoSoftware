@@ -10,7 +10,7 @@ public class Main {
         int opcao;
 
         do {
-            System.out.println("\nDeseja informar:");
+            System.out.println("Deseja informar:");
             System.out.println("1 - Filme");
             System.out.println("2 - Série");
             System.out.println("0 - Sair");
