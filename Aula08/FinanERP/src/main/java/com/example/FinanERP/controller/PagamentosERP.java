@@ -3,12 +3,13 @@ package com.example.FinanERP.controller;
 import com.example.FinanERP.model.DadosCadastroPagamento;
 import com.example.FinanERP.model.Pagamento;
 import com.example.FinanERP.model.PagamentosRepository;
+import com.example.FinanERP.model.Tipo;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/pagamentos")
 public class PagamentosERP {
@@ -17,7 +18,18 @@ public class PagamentosERP {
     private PagamentosRepository pagamentosRepository;
 
     @PostMapping
+    @Transactional
     public void cadastrarPagamentos(@RequestBody DadosCadastroPagamento pagamento) {
         pagamentosRepository.save(new Pagamento(pagamento));
+    }
+
+    @GetMapping
+    public List<Pagamento> listarPagamentos() {
+        return pagamentosRepository.findAll();
+    }
+
+    @GetMapping("/tipo/{tipo}")
+    public List<Pagamento> listarPagamentosPorTipo(@PathVariable Tipo tipo) {
+        return pagamentosRepository.findByTipo(tipo);
     }
 }
