@@ -5,35 +5,34 @@ import lombok.*;
 
 import java.time.LocalDate;
 
-// anotação para identificar a tabela onde sera salvo os dados
+//Anotação para identificar a tabela aonde os dados serão salvos
 @Table(name = "pagamentos")
-
-@Getter @Setter
-@AllArgsConstructor
-@NoArgsConstructor
+@Entity (name = "Pagamento")
 @EqualsAndHashCode(of = "id")
 
-@Entity
 public class Pagamento {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+
+
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Enumerated(EnumType.STRING)
     private Tipo tipo;
-    private String nome_cliente;
+    private String nomeCliente;
     private double valor;
-    private LocalDate data_pagamento;
+    private LocalDate dataPagamento;
     private String descricao;
 
-    public Pagamento() {
-    }
 
     public Pagamento(DadosCadastroPagamento pagamento) {
         this.tipo = pagamento.tipo();
-        this.nome_cliente = pagamento.nome_cliente();
+        this.nomeCliente = pagamento.nomeCliente();
         this.valor = pagamento.valor();
-        this.data_pagamento = pagamento.data_pagamento();
+        this.dataPagamento = pagamento.dataPagamento();
         this.descricao = pagamento.descricao();
+    }
+
+    public Pagamento() {
     }
 
     public Long getId() {
@@ -52,12 +51,12 @@ public class Pagamento {
         this.tipo = tipo;
     }
 
-    public String getNome_cliente() {
-        return nome_cliente;
+    public String getNomeCliente() {
+        return nomeCliente;
     }
 
-    public void setNome_cliente(String nome_cliente) {
-        this.nome_cliente = nome_cliente;
+    public void setNomeCliente(String nomeCliente) {
+        this.nomeCliente = nomeCliente;
     }
 
     public double getValor() {
@@ -68,12 +67,12 @@ public class Pagamento {
         this.valor = valor;
     }
 
-    public LocalDate getData_pagamento() {
-        return data_pagamento;
+    public LocalDate getDataPagamento() {
+        return dataPagamento;
     }
 
-    public void setData_pagamento(LocalDate data_pagamento) {
-        this.data_pagamento = data_pagamento;
+    public void setDataPagamento(LocalDate dataPagamento) {
+        this.dataPagamento = dataPagamento;
     }
 
     public String getDescricao() {

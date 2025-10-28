@@ -4,7 +4,6 @@ import com.example.FinanERP.model.DadosCadastroPagamento;
 import com.example.FinanERP.model.Pagamento;
 import com.example.FinanERP.model.PagamentosRepository;
 import com.example.FinanERP.model.Tipo;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +17,6 @@ public class PagamentosERP {
     private PagamentosRepository pagamentosRepository;
 
     @PostMapping
-    @Transactional
     public void cadastrarPagamentos(@RequestBody DadosCadastroPagamento pagamento) {
         pagamentosRepository.save(new Pagamento(pagamento));
     }
@@ -31,5 +29,6 @@ public class PagamentosERP {
     @GetMapping("/tipo/{tipo}")
     public List<Pagamento> listarPagamentosPorTipo(@PathVariable Tipo tipo) {
         return pagamentosRepository.findByTipo(tipo);
+
     }
 }

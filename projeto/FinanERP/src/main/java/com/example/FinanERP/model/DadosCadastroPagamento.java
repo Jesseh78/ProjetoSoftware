@@ -5,10 +5,10 @@ import java.time.LocalDate;
 public record DadosCadastroPagamento(
 
         Tipo tipo, //Entrada ou Saida
-        String nome_cliente,
+        String nomeCliente,
         TipoSaida tipoSaida,
         double valor,
-        LocalDate data_pagamento,
+        LocalDate dataPagamento,
         String descricao
 ) {
 
