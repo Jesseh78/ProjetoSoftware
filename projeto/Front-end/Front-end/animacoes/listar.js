@@ -12,7 +12,9 @@ function buscaPagamentos(){
 let tabelaPagamentos = document.getElementById("tabelaPagamentos")
 
 function exibePagamentos(dados){
-    let pagamentos = dados[0]
+    tabelaPagamentos.innerHTML = ""
+
+    dados.forEach(pagamentos => {
     // cria os elementos da tabela
     let linhaPagamento = document.createElement("tr")
     let tipoPagamentoTd = document.createElement("td")
@@ -28,14 +30,48 @@ function exibePagamentos(dados){
     data.textContent = pagamentos.dataPagamento
     valor.textContent = "R$" + parseFloat(pagamentos.valor).toFixed(2)
 
+    let btnEditar = document.createElement("button")
+    btnEditar.textContent = "Editar"
+    btnEditar.className = "btn-editar"
+    btnEditar.dataset.id = pagamentos.id
+
+    btnEditar.addEventListener("click", () => {
+        abrirFormulario(pagamentos)
+    })
+
+    let btnExcluir = document.createElement("button")
+    btnExcluir.textContent = "Excluir"
+    btnExcluir.className = "btn-excluir"
+    btnExcluir.dataset.id = pagamentos.id
+
+    //criar td acoes
+    let acoes = document.createElement("td")
+    acoes.appendChild(btnEditar)
+    acoes.appendChild(btnExcluir)
+
+
     linhaPagamento.appendChild(tipoPagamentoTd)
     linhaPagamento.appendChild(nomeCliente)
     linhaPagamento.appendChild(descricao)
     linhaPagamento.appendChild(data)
     linhaPagamento.appendChild(valor)
-
+    linhaPagamento.appendChild(acoes)
     tabelaPagamentos.appendChild(linhaPagamento)
+    }); 
+}
+
+function abrirFormulario(pagamentos){
+    let formEdicao = document.getElementById("formEdicao")
+    formEdicao.style.display="block"
+    document.getElementById("editNome").value = pagamentos.nomeCliente
+    document.getElementById("editDescricao").value = pagamentos.descricao
+    document.getElementById("editValor").value = pagamentos.valor
+    document.getElementById("editData").value = pagamentos.data
 
 
+}
 
+function cancelarEdicao(){
+    let formEdicao = document.getElementById("formEdicao")
+    formEdicao.style.display="none"
 }
