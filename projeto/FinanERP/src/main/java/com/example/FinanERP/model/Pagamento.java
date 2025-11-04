@@ -82,4 +82,19 @@ public class Pagamento {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
+
+    public void attInfo(AtualizacaoPagamento att) {
+        if (att.nomeCliente() != null) {
+            this.nomeCliente = att.nomeCliente();
+        }
+        if (att.valor() != 0) {
+            this.valor = att.valor();
+        }
+        if (att.dataPagamento() != null) {
+            this.dataPagamento = att.dataPagamento();
+        }
+        if (att.descricao() != null) {
+            this.descricao = att.descricao();
+        }
+    }
 }

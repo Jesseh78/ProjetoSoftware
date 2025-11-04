@@ -36,13 +36,17 @@ function exibePagamentos(dados){
     btnEditar.dataset.id = pagamentos.id
 
     btnEditar.addEventListener("click", () => {
-        abrirFormulario(pagamentos)
+        abrirFormulario(pagamentos, linhaPagamento)
     })
 
     let btnExcluir = document.createElement("button")
     btnExcluir.textContent = "Excluir"
     btnExcluir.className = "btn-excluir"
     btnExcluir.dataset.id = pagamentos.id
+
+    btnExcluir.addEventListener("click",() => {
+        excluirPagamento(pagamentos.id)
+    })
 
     //criar td acoes
     let acoes = document.createElement("td")
@@ -60,18 +64,36 @@ function exibePagamentos(dados){
     }); 
 }
 
-function abrirFormulario(pagamentos){
+function abrirFormulario(pagamentos, linha){
     let formEdicao = document.getElementById("formEdicao")
     formEdicao.style.display="block"
+    linha.insertAdjacentElement("afterend", formEdicao);
+
+    document.getElementById("editId").value = pagamentos.id
     document.getElementById("editNome").value = pagamentos.nomeCliente
     document.getElementById("editDescricao").value = pagamentos.descricao
     document.getElementById("editValor").value = pagamentos.valor
     document.getElementById("editData").value = pagamentos.data
-
-
 }
 
 function cancelarEdicao(){
     let formEdicao = document.getElementById("formEdicao")
     formEdicao.style.display="none"
+}
+
+function excluirPagamento(id){
+    if(confirm("Deseja realmente excluir esse pagamento?")){
+        fetch(`http://localhost:8080/pagamentos/${id}`,{
+            method: "DELETE"
+        }).then(res =>{
+            if (res.ok){
+                alert("Pagamento excluido!")
+                buscaPagamentos()
+            }else{
+                alert("Erro ao excluir")
+            }
+        }).catch(error =>{
+            alert("Erro ao conectar com o banco")
+        })
+    }
 }
